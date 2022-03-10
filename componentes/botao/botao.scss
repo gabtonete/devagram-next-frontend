@@ -1,6 +1,7 @@
 @mixin botaoPrimario {
     background-color: $primaria;
     color: $branco;
+    border: 1px solid white;
 }
 
 @mixin botaoInvertido {
@@ -21,6 +22,14 @@
         &:hover {
             @include botaoInvertido;
         }
+
+        &:disabled {
+            opacity: 0.5;
+
+            &:hover {
+                @include botaoPrimario;
+            }
+        }
     }
 
     &.invertido {
@@ -30,9 +39,4 @@
             @include botaoPrimario;
         }
     }
-
-    &:disabled {
-        opacity: 0.5;
-    }
-
 }

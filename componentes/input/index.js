@@ -21,14 +21,12 @@ export default function Input ({
                     width={20}
                     height={20}
                 />
-
                 <input 
                     type={type}
                     placeholder={placeholder}
                     value={value}
                     onChange={changeValue}
                 />
-                
             </div>    
                 {showValidationMessage &&   
                 <p className="validation-message">{validationMessage}</p>}

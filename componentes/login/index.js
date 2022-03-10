@@ -22,6 +22,7 @@ export default function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [isLoading, setIsLoading] = useState(false);
+    const [loginFail, setLoginFail] = useState('');
 
     const turnOnButton = () => {
         return (
@@ -76,8 +77,10 @@ export default function Login() {
                         value={email}
                         placeholder="E-mail"
                         changeValue={e => setEmail(e.target.value)}
+                        /*
                         validationMessage="O endereço informado é inválido!"
                         showValidationMessage={email && !validarEmail(email)}
+                        */
                     />
                     <Input
                         type="password"
@@ -85,8 +88,10 @@ export default function Login() {
                         value={password}
                         placeholder="Senha"
                         changeValue={e => setPassword(e.target.value)}
-                        validationMessage="A senha precisa ter no mínimo 4 caractéres!"
+                        /*
+                        validationMessage="Usuário ou senha inválidos"
                         showValidationMessage={password && !validarSenha(password)}
+                        */
                     />
                     <Botao
                         type="submit"
