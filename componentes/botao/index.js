@@ -1,5 +1,4 @@
-export const Botao = (props) => {
-
+export default function Botao (props) {
     const {
         type = "button",
         texto,

@@ -2,10 +2,10 @@ import Image from "next/image";
 import { useRef } from "react"
 import { useEffect } from "react";
 
-export const UploadImagem = (props) => {
 
-    const { 
-        className= '',
+export default function UploadImagem(props) {
+    const {
+        className = '',
         setImagem,
         imagemPreview,
         imagemPreviewClassName,
@@ -15,19 +15,21 @@ export const UploadImagem = (props) => {
     const referenciaInput = useRef(null);
 
     useEffect(() => {
-        if(!aoSetarAReferencia) {
+        if (!aoSetarAReferencia) {
             return;
         }
 
         aoSetarAReferencia(referenciaInput?.current);
-    }, [referenciaInput?.current]);
+    }, [referenciaInput?.current, setImagem]);
+
+   
 
     const abrirSeletorArquivo = () => {
         referenciaInput?.current.click();
     }
 
     const aoAlterarImagem = () => {
-        if(!referenciaInput?.current?.files?.length) {
+        if (!referenciaInput?.current?.files?.length) {
             return;
         }
 
@@ -43,7 +45,7 @@ export const UploadImagem = (props) => {
     }
 
     return (
-        <div className={`upload-imagem-container ${className}`}>
+        <div className={`upload-imagem-container ${className}`} onClick={abrirSeletorArquivo}>
             {imagemPreview && (
                 <div className="imagem-preview-container">
                     <Image
@@ -55,13 +57,13 @@ export const UploadImagem = (props) => {
                     />
                 </div>
             )}
-            <input 
-                type="file" 
+            <input
+                type="file"
                 className="oculto"
                 accept="image/*"
                 ref={referenciaInput}
                 onChange={aoAlterarImagem}
-            /> 
-        </div> 
+            />
+        </div>
     );
 }

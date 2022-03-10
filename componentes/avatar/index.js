@@ -11,11 +11,9 @@ export const Avatar = ({src}) => {
 
     return (
         <img
-            src={getAvatar()}
+            src={getAvatar}
             alt="Avatar"
-            className="avatar"    
-        / >
-        
-        
+            className="avatar"
+        />
     )
 }

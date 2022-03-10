@@ -1,0 +1,80 @@
+.public-page {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    padding: 0px 32px;
+    .logo-container {
+        position: relative;
+        height: 13%;
+        width: 100%;
+        margin-bottom: 50px;
+    }
+    
+    .public-page-content {
+        width: 100%;
+    }
+
+    .btn {
+        margin-top: 15px;
+        padding: 10px;
+    }
+
+    .public-page-footer {
+        text-align: center;
+        margin-top: 24px;
+        
+        p {
+            color: $cinza3;
+            margin: 0 0 2px;
+        }
+
+        a {
+            color: $primaria;
+            font-family: $fontBold;
+        }
+
+    }
+
+    @media screen and (min-width: $desktopBreakpoint) {
+        flex-direction: row;
+        padding-left: 140px;
+        padding-right: 160px;
+        
+        .logo-container {
+            height: 30%;
+            flex: 2;
+            
+            .logo {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+        
+        .public-page-content {
+            flex: 1;
+            width: 30%;
+            border: 1px solid $primaria;
+            border-radius: 26px;
+            padding: 60px;
+        }
+        
+        .btn {
+            padding: 18px;
+            font-size: 18px;
+        }
+
+        .public-page-footer {
+            p, a {
+                font-size: 18px;
+            }
+        }
+
+        .public-input {
+            input {
+                font-size: 16px;
+            }
+        }
+    }
+}

@@ -12,8 +12,8 @@ const validarSenha = senha => {
     return senha?.toString().length > 3;
 }
 
-const validarConfirmacaoSEnha = (senha, confirmacao) => {
-    return validarSenha(senha) && senha === confirmacao;
+const validarConfirmacaoSenha = (senha, confirmacao) => {
+    return senha === confirmacao;
 }
 
-export { validarConfirmacaoSEnha, validarNome, validarSenha, validarEmail };
+export { validarConfirmacaoSenha, validarNome, validarSenha, validarEmail };
