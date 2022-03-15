@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 import Image from 'next/image';
 import Link from "next/link";
+import { useRouter } from 'next/router';
 
 import Input from "../../componentes/input";
 import Botao from '../../componentes/botao';
@@ -20,7 +21,6 @@ import { validarNome, validarEmail, validarSenha, validarConfirmacaoSenha } from
 const usuarioService = new UsuarioService();
 
 
-
 export default function Cadastro() {
     const [image, setImage] = useState(null);
     const [name, setName] = useState('');
@@ -28,6 +28,8 @@ export default function Cadastro() {
     const [password, setPassword] = useState('');
     const [truePassword, setTruePassword] = useState('');
     const [isLoading, setIsLoading] = useState(false);
+
+    const router = useRouter();
 
     const turnOnButtonSign = () => {
         return (
@@ -39,7 +41,6 @@ export default function Cadastro() {
     }
 
     const submitForm = async (e) => {
-
         e.preventDefault();
 
         if (!turnOnButtonSign()) {
@@ -57,13 +58,17 @@ export default function Cadastro() {
             if (image?.arquivo) {
                 payload.append("file", image.arquivo)
             }
+            
+            const result = await usuarioService.cadastro(payload);
+            console.log(result)
+            await usuarioService.login({
+                login: email,
+                login: password
+            })
 
-            await usuarioService.cadastro(payload);
-            alert("Sucesso!");
+            router.push('/');
         } catch (error) {
-            alert(
-                "Erro ao cadastrar usuário. " + error?.response?.data?.erro
-            )
+            console.log('falhou ao cadastrar', error)
         }
 
         setIsLoading(false);

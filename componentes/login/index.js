@@ -18,7 +18,7 @@ import { validarEmail, validarSenha } from '../../utils/validadores';
 
 const usuarioService = new UsuarioService()
 
-export default function Login() {
+export default function Login({ aposAutenticacao }) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [isLoading, setIsLoading] = useState(false);
@@ -46,20 +46,16 @@ export default function Login() {
                 senha: password
             })
 
-            alert(
-                "Sucesso ao realizar login"
-            )
+            if(aposAutenticacao) {
+                aposAutenticacao();
+            }
         } catch (error) {
-            alert(
-                "Erro ao realizar login."
-            )
+            console.log('falhou ao logar', error)
         }
 
         setIsLoading(false);
-
     }
-
-
+    
     return (
         <section className={`signup-page public-page`}>
             <div className="logo-container">
