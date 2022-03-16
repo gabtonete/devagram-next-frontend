@@ -63,7 +63,7 @@ export default function Cadastro() {
             console.log(result)
             await usuarioService.login({
                 login: email,
-                login: password
+                senha: password
             })
 
             router.push('/');
