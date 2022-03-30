@@ -4,44 +4,37 @@ import lupa from '../../public/imagens/lupa.svg'
 import Navbar from './Navbar';
 import ResultadoPesquisa from './ResultadoPesquisa';
 import { useState } from 'react';
+import UsuarioService from '../../services/UsuarioService';
+import { useRouter } from 'next/router';
 
+const usuarioService = new UsuarioService();
 
 export default function Header() {
     const [resultadoPesquisa, setResultadoPesquisa] = useState([]);
     const [termoPesquisado, setTermoPesquisado] = useState('');
-
-    const aoPesquisar = (e) => {
+    const router = useRouter();
+    
+    const aoPesquisar = async (e) => {
         setTermoPesquisado(e.target.value);
         setResultadoPesquisa([]);
         
-        if(termoPesquisado.length < 3) {
+        if(termoPesquisado.length < 3 || termoPesquisado.length == '') {
             return;
         }
-        setResultadoPesquisa([
-            {
-            avatar: '',
-            nome: 'Usuário de teste',
-            email: 'mockado1@mockado.com',
-            _id: '123456'
-            },
-            {
-            avatar: '',
-            nome: 'mockado2_',
-                email: 'mockado2@mockado2.com',
-                _id: '3433434'
-            },
-            {
-                avatar: '',
-                nome: 'mockado3_',
-                email: 'mockado3@mockado3.com',
-                _id: '123123'
-            },
-        ])
+        
+        try {     
+            const { data } = await usuarioService.pesquisar(termoPesquisado);
+            setResultadoPesquisa(data);
+
+        }catch (error){
+            console.log("Erro ao pesquisar usuário: ", error?.response?.data?.erro);
+        }
     }
 
     const aoClicarResultadoPesquisa = (id) => {
-        console.log('aoClicarResultadoPesquisa', id)
-
+        setTermoPesquisado('');
+        setResultadoPesquisa([]);
+        router.push(`/perfil/${id}`);
     }
 
     return (
