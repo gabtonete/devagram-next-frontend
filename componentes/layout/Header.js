@@ -18,7 +18,7 @@ export default function Header() {
         setTermoPesquisado(e.target.value);
         setResultadoPesquisa([]);
         
-        if(termoPesquisado.length < 3 || termoPesquisado.length == '') {
+        if(e.target.value.length < 3 || termoPesquisado.length == '') {
             return;
         }
         
@@ -37,11 +37,16 @@ export default function Header() {
         router.push(`/perfil/${id}`);
     }
 
+    const redirecionarParaHome = () => {
+        router.push('/');
+    }
+
     return (
         <header className="cabecalhoPrincipal">
             <div className="conteudoCabecalhoPrincipal">
                 <div className="logoCabecalhoPrincipal">
                     <Image 
+                        onClick={() => redirecionarParaHome()}
                         src={logoHorizontal}
                         alt="logo horizontal"
                         layout='fill'
