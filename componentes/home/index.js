@@ -1,8 +1,9 @@
 import comAutorizacao from "../../hoc/comAutorizacao"
+import Feed from "../feed";
 
-function Home() {
+function Home({ usuarioLogado }) {
     return(
-        <h2>Home (casa em inglês)</h2>
+        <Feed usuarioLogado={usuarioLogado} />
     )
 }
 
