@@ -4,7 +4,11 @@ export function FazerComentario ({usuarioLogado}) {
     return (
         <div className="containerFazerComentario">
             <Avatar src={usuarioLogado.avatar}/>
-            <textarea placeholder="Adicione um comentário..."></textarea>
+            <textarea rows="1" placeholder="Adicione um comentário..."></textarea>
+
+            <button type="button" className="btnPublicacao desktop">
+                Publicar
+            </button>
         </div>
     )
 }
