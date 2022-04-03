@@ -13,6 +13,11 @@ export default function Header() {
     const [resultadoPesquisa, setResultadoPesquisa] = useState([]);
     const [termoPesquisado, setTermoPesquisado] = useState('');
     const router = useRouter();
+
+    let cabecalhoClassName = '';
+    if(window && window.location.pathname !== '/') {
+        cabecalhoClassName = 'desktop'
+    }
     
     const aoPesquisar = async (e) => {
         setTermoPesquisado(e.target.value);
@@ -42,7 +47,7 @@ export default function Header() {
     }
 
     return (
-        <header className="cabecalhoPrincipal">
+        <header className={`cabecalhoPrincipal ${cabecalhoClassName}`}>
             <div className="conteudoCabecalhoPrincipal">
                 <div className="logoCabecalhoPrincipal">
                     <Image 
