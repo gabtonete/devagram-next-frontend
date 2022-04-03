@@ -24,4 +24,8 @@ export default class HttpService {
     async get(url) {
         return await this.axios.get(url)
     }
+
+    async put(url, data) {
+        return await this.axios.put(url, data);
+    }
 }   

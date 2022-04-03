@@ -1,88 +1,32 @@
 import { useState, useEffect } from "react"
+import FeedService from "../../services/FeedService";
 import Postagem from "./Postagem";
+
+const feedService = new FeedService();
 
 export default function Feed ({ usuarioLogado }) {
     const [listaDePostagens, setListaDePostagens] = useState([]);
     
-    useEffect(() => {
-        setListaDePostagens([
-            {
-                id: 1,
-                usuario: { 
-                    id: '1',
-                    nome: 'Douglas',
-                    avatar: null
-                },
-                fotoDoPost: 'https://img.freepik.com/fotos-gratis/imagem-aproximada-em-tons-de-cinza-de-uma-aguia-careca-americana-em-um-fundo-escuro_181624-31795.jpg?w=360',
-                descricao: 'MinhaMinha foto muito legal descricao teste teste descricao bla bla bla bla bla bla bla bla blaMinha foto muito legal descricao teste teste descricao bla bla bla bla bla bla bla bla bla foto muito legal descricao teste teste descricao bla bla bla bla bla bla bla bla bla ',
-                curtidas: [],
-                comentarios: [
-                    {
-                        nome: 'Alguem',
-                        mensagem: 'muito legal'
-                    },
-                    {
-                        nome: 'Alguem',
-                        mensagem: 'muito legal'
-                    },
-                    {
-                        nome: 'Alguem',
-                        mensagem: 'muito legal'
-                    }
-                ]
+    useEffect(async () => {
+        const {data} = await feedService.carregarPostagens();
+
+        const postagensFormatadas = data.map(postagem => ({
+            id: postagem._id,
+            usuario: {
+                id: postagem.userId,
+                nome: postagem.usuario.nome,
+                avatar: postagem.usuario.avatar
             },
-            {
-                id: 1,
-                usuario: { 
-                    id: '1',
-                    nome: 'Douglas',
-                    avatar: null
-                },
-                fotoDoPost: 'https://img.freepik.com/fotos-gratis/imagem-aproximada-em-tons-de-cinza-de-uma-aguia-careca-americana-em-um-fundo-escuro_181624-31795.jpg?w=360',
-                descricao: 'Minha foto muito legal descricao teste teste descricao bla bla bla bla bla bla bla bla bla Minha foto muito legal descricao teste teste descricao bla bla bla bla bla bla bla bla bla',
-                curtidas: [],
-                comentarios: [
-                    {
-                        nome: 'Alguem',
-                        mensagem: 'muito legal'
-                    },
-                    {
-                        nome: 'Alguem',
-                        mensagem: 'muito legal'
-                    },
-                    {
-                        nome: 'Alguem',
-                        mensagem: 'muito legal'
-                    }
-                ]
-            },
-            {
-                id: 1,
-                usuario: { 
-                    id: '1',
-                    nome: 'Douglas',
-                    avatar: null
-                },
-                fotoDoPost: 'https://img.freepik.com/fotos-gratis/imagem-aproximada-em-tons-de-cinza-de-uma-aguia-careca-americana-em-um-fundo-escuro_181624-31795.jpg?w=360',
-                descricao: 'Minha foto muito legal descricao teste teste descricao bla bla bla bla bla bla bla bla bla Minha foto muito legal descricao teste teste descricao bla bla bla bla bla bla bla bla bla',
-                curtidas: [],
-                comentarios: [
-                    {
-                        nome: 'Alguem',
-                        mensagem: 'muito legal'
-                    },
-                    {
-                        nome: 'Alguem',
-                        mensagem: 'muito legal'
-                    },
-                    {
-                        nome: 'Alguem',
-                        mensagem: 'muito legal'
-                    }
-                ]
-            }
-        ])
-        console.log(listaDePostagens)
+            fotoDoPost: postagem.foto,
+            descricao: postagem.descricao,
+            curtidas: postagem.likes,
+            comentarios: postagem.comentarios.map(c => ({
+                nome: c.nome,
+                mensagem: c.comentario
+            }))
+        }))
+
+        setListaDePostagens(postagensFormatadas);
     }, [usuarioLogado]);
 
     if (!listaDePostagens.length) {
