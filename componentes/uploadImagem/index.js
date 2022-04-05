@@ -1,16 +1,17 @@
 import Image from "next/image";
 import { useRef } from "react"
 import { useEffect } from "react";
+import foto from '../../public/imagens/curtido.svg';
 
-
-export default function UploadImagem(props) {
-    const {
+export default function UploadImagem(
+    {
         className = '',
         setImagem,
         imagemPreview,
         imagemPreviewClassName,
-        aoSetarAReferencia
-    } = props
+        aoSetarAReferencia,
+        usuarioLogado
+    }) {
 
     const referenciaInput = useRef(null);
 
@@ -46,17 +47,20 @@ export default function UploadImagem(props) {
 
     return (
         <div className={`upload-imagem-container ${className}`} onClick={abrirSeletorArquivo}>
-            {imagemPreview && (
-                <div className="imagem-preview-container">
-                    <Image
-                        src={imagemPreview}
-                        width={150}
-                        height={150}
-                        alt='Imagem preview'
-                        className={imagemPreviewClassName}
-                    />
-                </div>
-            )}
+            {imagemPreview !== ''
+            ?   (
+                    <div className="imagem-preview-container">
+                        <Image
+                            src={imagemPreview}
+                            width={150}
+                            height={150}
+                            alt='Imagem preview'
+                            className={imagemPreviewClassName}
+                        />
+                    </div>
+                )
+            : null
+            }
             <input
                 type="file"
                 className="oculto"

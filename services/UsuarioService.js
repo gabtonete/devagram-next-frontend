@@ -13,12 +13,16 @@ export default class UsuarioService extends HttpService {
         localStorage.setItem("id", usuario.data._id);
 
         if (usuario.data.avatar) {
-            localStorage.setItem("avatar", data.avatar);
+            localStorage.setItem("avatar", usuario.data.avatar);
         }
     }
 
     async cadastro(dados) {
         return await this.post('/cadastro', dados)
+    }
+
+    async atualizarPerfil(dados) {
+        return await this.put('/usuario', dados)
     }
 
     estaAutenticado() {
