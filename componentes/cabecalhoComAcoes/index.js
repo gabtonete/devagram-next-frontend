@@ -6,7 +6,7 @@ export default function CabecalhoComAcoes ({
     textoEsquerda = null,
     aoClicarAcaoEsquerda,
     titulo,
-    elementoDireita = null
+    elementoDireita
 }) {
     return (
         <div className={`cabecalhoComAcoes ${className}`}>
@@ -35,7 +35,6 @@ export default function CabecalhoComAcoes ({
                 <button 
                     type="button"
                 >
-                    
                 </button>)
             }
             
