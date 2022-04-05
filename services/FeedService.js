@@ -6,7 +6,7 @@ export default class FeedService extends HttpService {
         let url = '/feed';
 
         if(idUsuario) {
-            url += `?id=${idUsuario}`
+            url = `${url}?id=${idUsuario}`
         }
         return await this.get(url);
     }

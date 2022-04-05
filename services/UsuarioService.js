@@ -37,6 +37,14 @@ export default class UsuarioService extends HttpService {
         return this.put(`/seguir?id=${idUsuario}`);
     }
 
+    async logout() {
+        localStorage.removeItem('id');
+        localStorage.removeItem('nome');
+        localStorage.removeItem('email');
+        localStorage.removeItem('avatar');
+        localStorage.removeItem("token");
+    }
+
     obterInformacoesDoUsuarioLogado() {
         return {
             id: localStorage.getItem('id'),
