@@ -4,7 +4,7 @@ export default class HttpService {
     constructor() {
         this.axios = axios.create({
             //baseURL: 'http://localhost:3001/api'
-            baseURL: 'http://backend-devagram-next-ts.vercel.app/api'
+            baseURL: process.env.NEXT_PUBLIC_API_URL
         });
 
         this.axios.interceptors.request.use((config) => {
