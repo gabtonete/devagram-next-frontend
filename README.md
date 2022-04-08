@@ -11,7 +11,7 @@ Projeto desenvolvido para apresentação do reactjs e next na formação Devaria
 
 ### Configuração do ambiente do ambiente de desenvolvimento
 
-1. Clonar o repositório `git clone <url_git>`
+1. Clonar o repositório `git clone https://github.com/gabtonete/frontend-devagram-nextjs`
 1. Configurar variáveis de ambiente do `.env.example`
 1. Executar `npm install` para instalar as dependências
 1. Executar `npm run dev` para iniciar o servidor de desenvolvimento do Devagram
