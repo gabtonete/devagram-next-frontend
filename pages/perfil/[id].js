@@ -15,13 +15,12 @@ function Perfil({usuarioLogado}) {
 
     const obterPerfil = async (idUsuario) => {
         try {
-            console.log('idUsuario: ', idUsuario)
             const { data } = await usuarioService.obterPerfil(
                 estaNoPerfilPessoal()
                     ? usuarioLogado.id
                     : idUsuario
             )
-            console.log(data)
+            
             return data;
         } catch (e) {
             console.log("Não foi possível obter perfil")

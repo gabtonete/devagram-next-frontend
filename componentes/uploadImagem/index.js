@@ -35,6 +35,10 @@ export default function UploadImagem(
         }
 
         const arquivo = referenciaInput?.current?.files[0];
+        obterUrlDaImagemEAtualizarEstado(arquivo);
+    }
+
+    const obterUrlDaImagemEAtualizarEstado = (arquivo) => {
         const fileReader = new FileReader();
         fileReader.readAsDataURL(arquivo);
         fileReader.onloadend = () => {
@@ -45,16 +49,28 @@ export default function UploadImagem(
         }
     }
 
+    const aoSoltarImagem = (e) => {
+        e.preventDefault();
+        console.log("Imagem solta");
+        if(e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+            const arquivo = e.dataTransfer.files[0];
+            obterUrlDaImagemEAtualizarEstado(arquivo);
+        }
+    }
+
     return (
-        <div className={`upload-imagem-container ${className}`} onClick={abrirSeletorArquivo}>
+        <div className={`upload-imagem-container ${className}`} 
+            onClick={abrirSeletorArquivo} 
+            onDragOver={e => e.preventDefault()}
+            onDrop={e => aoSoltarImagem(e)}
+        >
+            
             {imagemPreview !== ''
             ?   (
                     <div className="imagem-preview-container">
-                        <Image
+                        <img 
                             src={imagemPreview}
-                            width={150}
-                            height={150}
-                            alt='Imagem preview'
+                            alt='imagem preview'
                             className={imagemPreviewClassName}
                         />
                     </div>
