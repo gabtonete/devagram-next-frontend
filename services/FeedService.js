@@ -22,4 +22,8 @@ export default class FeedService extends HttpService {
     async fazerPublicacao(dados) {
         return this.post(`/publicacao`, dados)
     }
+
+    async carregarLista() {
+        return this.get(`/listar`)
+    }
 }

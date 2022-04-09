@@ -111,14 +111,16 @@ body {
 }
 
 @import '../public/fonts/fonts.scss';
+@import './public-page.scss';
 @import '../componentes/botao/botao.scss';
 @import '../componentes/input/input.scss';
 @import '../componentes/botao/botao.scss';
 @import '../componentes/layout/header.scss';
 @import '../componentes/layout/footer.scss';
 @import '../componentes/feed/feed.scss';
-@import './public-page.scss';
-@import '../pages/cadastro/cadastro.scss';
+@import '../componentes/home/home.scss';
 @import '../componentes/cabecalhoComAcoes/cabecalhoComAcoes.scss';
+@import '../componentes/list/list.scss';
+@import '../pages/cadastro/cadastro.scss';
 @import '../pages/perfil/perfil.scss';
 @import '../pages/publicacao/publicacao.scss';

@@ -76,7 +76,7 @@ function EditarPerfil ({ usuarioLogado }) {
                     <UploadImagem 
                         setImagem={setAvatar}
                         imagemPreviewClassName='avatar'
-                        imagemPreview={avatar.preview || imgAvatarPadrao}
+                        imagemPreview={avatar?.preview || imgAvatarPadrao.src}
                         aoSetarAReferencia={setInputAvatar}
                         usuarioLogado={usuarioLogado.avatar}
                     />

@@ -18,6 +18,7 @@ function Publicacao() {
     const [inputImagem, setInputImagem] = useState();
     const [etapaAtual, setEtapaAtual] = useState(1);
     const [descricao, setDescricao] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
 
     const estaNaEtapaUm = () => etapaAtual === 1;
 
@@ -51,13 +52,17 @@ function Publicacao() {
         setEtapaAtual(1);
     }
 
-    const aoClicarAcaoDireita = () => {
+    const aoClicarAcaoDireita = async () => {
+        setIsLoading(false)
+        
         if (estaNaEtapaUm()) {
             setEtapaAtual(2);
             return;
         }
 
-        publicar();
+        setIsLoading(true);
+
+        await publicar();
     }
 
     const escreverDescricao = (e) => {
@@ -99,6 +104,7 @@ function Publicacao() {
                 titulo={"Nova publicação"}
                 aoClicarAcaoEsquerda={() => aoClicarAcaoEsquerda()}
                 aoClicarElementoDireita={() => aoClicarAcaoDireita()}
+                desabilitado={isLoading}
             />
 
             <hr className="linhaDivisoria"></hr>

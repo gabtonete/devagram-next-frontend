@@ -7,7 +7,8 @@ export default function CabecalhoComAcoes ({
     aoClicarAcaoEsquerda,
     titulo,
     elementoDireita,
-    aoClicarElementoDireita
+    aoClicarElementoDireita,
+    desabilitado = false
 }) {
     return (
         <div className={`cabecalhoComAcoes ${className}`}>
@@ -37,6 +38,7 @@ export default function CabecalhoComAcoes ({
                     type="button"
                     className="btnAcaoDireita"
                     onClick={aoClicarElementoDireita}
+                    disabled={desabilitado}
                 >
                     {elementoDireita}
                 </button>
