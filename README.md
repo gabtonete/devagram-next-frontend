@@ -1,5 +1,5 @@
 # Devagram
-<a href="https://frontend-devagram-nextjs.vercel.app">Link do projeto aqui<</a>
+<a href="https://frontend-devagram-nextjs.vercel.app">Link do projeto aqui</a> \n
 Projeto desenvolvido para apresentação do reactjs e next na formação Devaria 2022.
 
 ### Tecnologias utilizadas
