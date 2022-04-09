@@ -16,7 +16,7 @@ function Perfil({usuarioLogado}) {
     const obterPerfil = async (idUsuario) => {
         try {
             const { data } = await usuarioService.obterPerfil(
-                await estaNoPerfilPessoal()
+                estaNoPerfilPessoal()
                     ? usuarioLogado.id
                     : idUsuario
             )
@@ -52,7 +52,9 @@ function Perfil({usuarioLogado}) {
                 estaNoPerfilPessoal={estaNoPerfilPessoal()}
             />
 
-            <Feed usuarioLogado={usuarioLogado} usuarioPerfil={usuario}
+            <Feed 
+                usuarioLogado={usuarioLogado} 
+                usuarioPerfil={usuario}
             />
         </div>
     );

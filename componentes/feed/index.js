@@ -5,17 +5,17 @@ import Postagem from "./Postagem";
 
 const feedService = new FeedService();
 
-export default  function Feed ({ usuarioPerfil }) {
+export default  function Feed ({ usuarioLogado, usuarioPerfil }) {
     const [listaDePostagens, setListaDePostagens] = useState([]);
     const router = useRouter();
     
     useEffect(async () => {
-        await setListaDePostagens([]);
+        setListaDePostagens([]);
         if(listaDePostagens.length > 0) {
             return;
         }
 
-        const { data } = await feedService.carregarPostagens(usuarioPerfil._id);
+        const { data } = await feedService.carregarPostagens(usuarioPerfil?._id);
 
         const postagensFormatadas = await data.map(postagem => ({
             id: postagem._id,
@@ -34,7 +34,7 @@ export default  function Feed ({ usuarioPerfil }) {
         }))
 
         setListaDePostagens(postagensFormatadas);
-    },[usuarioPerfil, router.pathname]);
+    },[usuarioLogado]);
 
     if (!listaDePostagens.length) {
         return null;
