@@ -8,7 +8,7 @@ import Botao from '../botao';
 
 import envelope from '../../public/imagens/envelope.svg';
 import chave from '../../public/imagens/chave.svg';
-import logo from '../../public/imagens/logo.svg';
+import logo from '../../public/imagens/cat-svgrepo-com.svg';
 
 import UsuarioService from '../../services/UsuarioService';
 
@@ -60,10 +60,11 @@ export default function Login({ aposAutenticacao }) {
         <section className={`signup-page public-page`}>
             <div className="logo-container">
                 <Image
+                    className="logoImage"
                     src={logo}
                     alt="logotipo"
-                    layout="fill"
                 />
+                <span className="logoName">Catgram</span>
             </div>
             <div className="public-page-content">
                 <form onSubmit={submitForm}>

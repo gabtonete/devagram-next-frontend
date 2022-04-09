@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import logoHorizontal from '../../public/imagens/logoHorizontal.svg';
+import logoHorizontal from '../../public/imagens/cat-svgrepo-com.svg';
 import lupa from '../../public/imagens/lupa.svg'
 import Navbar from './Navbar';
 import ResultadoPesquisa from './ResultadoPesquisa';
@@ -56,6 +56,7 @@ export default function Header() {
                         alt="logo horizontal"
                         layout='fill'
                     />
+                    <span className="logoName desktop">Catgram</span>
                 </div>
                 <div className="barraPesquisa">
                     <div className="containerImagemLupa">

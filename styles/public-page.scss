@@ -8,10 +8,22 @@
     background-color: $branco;
 
     .logo-container {
-        position: relative;
+        display: flex;
+        flex-direction: column;
         height: 13%;
-        width: 100%;
+        width: 150px;
         margin-bottom: 50px;
+        align-items: center;
+
+        .logoImage{
+            width: 30%;
+        }
+        .logoName {
+            color: $primaria;
+            font-size: 30px;
+            font-weight: 900;
+            font-family: $fontBold;
+        }
     }
     
     .public-page-content {
