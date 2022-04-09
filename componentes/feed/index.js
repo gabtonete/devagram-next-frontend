@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import { useState, useEffect } from "react"
 import FeedService from "../../services/FeedService";
 import Postagem from "./Postagem";
@@ -6,6 +7,7 @@ const feedService = new FeedService();
 
 export default  function Feed ({ usuarioLogado , usuarioPerfil }) {
     const [listaDePostagens, setListaDePostagens] = useState([]);
+    const router = useRouter();
     
     useEffect(async () => {
         setListaDePostagens([]);
@@ -28,7 +30,7 @@ export default  function Feed ({ usuarioLogado , usuarioPerfil }) {
         }))
 
         setListaDePostagens(postagensFormatadas);
-    }, [usuarioLogado, usuarioPerfil]);
+    }, [usuarioLogado, usuarioPerfil, router.pathname]);
 
     if (!listaDePostagens.length) {
         return null;
