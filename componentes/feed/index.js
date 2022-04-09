@@ -5,7 +5,7 @@ import Postagem from "./Postagem";
 
 const feedService = new FeedService();
 
-export default  function Feed ({ usuarioLogado , usuarioPerfil }) {
+export default  function Feed ({ usuarioPerfil }) {
     const [listaDePostagens, setListaDePostagens] = useState([]);
     const router = useRouter();
     
@@ -15,9 +15,9 @@ export default  function Feed ({ usuarioLogado , usuarioPerfil }) {
             return;
         }
 
-        const { data } = await feedService.carregarPostagens(usuarioPerfil?._id);
+        const { data } = await feedService.carregarPostagens(usuarioPerfil._id);
 
-        const postagensFormatadas = data.map(postagem => ({
+        const postagensFormatadas = await data.map(postagem => ({
             id: postagem._id,
             usuario: {
                 id: postagem?.idUsuario,
@@ -34,7 +34,7 @@ export default  function Feed ({ usuarioLogado , usuarioPerfil }) {
         }))
 
         setListaDePostagens(postagensFormatadas);
-    }, [usuarioLogado, usuarioPerfil, router.pathname]);
+    },[usuarioPerfil, router.pathname]);
 
     if (!listaDePostagens.length) {
         return null;
