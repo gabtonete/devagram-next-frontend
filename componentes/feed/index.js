@@ -8,14 +8,23 @@ const feedService = new FeedService();
 export default  function Feed ({ usuarioLogado, usuarioPerfil }) {
     const [listaDePostagens, setListaDePostagens] = useState([]);
     const router = useRouter();
-    
+
     useEffect(async () => {
         setListaDePostagens([]);
-        if(listaDePostagens.length > 0) {
-            return;
+
+        console.log('usuarioPerfil?.id: ', usuarioPerfil?._id)
+        const { data } = await feedService.carregarPostagens(usuarioPerfil?._id);
+        console.log('postagens carregadas: ', data)
+
+        if(usuarioPerfil?._id !== undefined) {
+            data.map(postagem => {
+                if(postagem.idUsuario !== usuarioPerfil._id){
+                    data.splice(postagem)
+                }
+            })
         }
 
-        const { data } = await feedService.carregarPostagens(usuarioPerfil?._id);
+        console.log(data)
 
         const postagensFormatadas = await data.map(postagem => ({
             id: postagem._id,
@@ -34,7 +43,8 @@ export default  function Feed ({ usuarioLogado, usuarioPerfil }) {
         }))
 
         setListaDePostagens(postagensFormatadas);
-    },[usuarioLogado]);
+        console.log('posts do feed: ', postagensFormatadas)
+    },[usuarioPerfil, router.query.id]);
 
     if (!listaDePostagens.length) {
         return null;

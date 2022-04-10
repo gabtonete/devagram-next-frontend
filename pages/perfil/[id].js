@@ -8,19 +8,23 @@ import UsuarioService from '../../services/UsuarioService';
 
 const usuarioService = new UsuarioService();
 
-function Perfil({usuarioLogado}) {
-    const [usuario, setUsuario] = useState({ });
+function Perfil({ usuarioLogado }) {
+    const [usuario, setUsuario] = useState({});
 
     const router = useRouter();
 
     const obterPerfil = async (idUsuario) => {
         try {
-            const { data } = await usuarioService.obterPerfil(
-                estaNoPerfilPessoal()
-                    ? usuarioLogado.id
-                    : idUsuario
-            )
-            
+            let whoIs;
+            if (estaNoPerfilPessoal()) {
+                whoIs = usuarioLogado.id
+            } else {
+                whoIs = idUsuario
+            }
+
+            console.log('whoIs: ', whoIs)
+
+            const { data } = await usuarioService.obterPerfil(whoIs)
             return data;
         } catch (e) {
             console.log("Não foi possível obter perfil")
@@ -28,19 +32,23 @@ function Perfil({usuarioLogado}) {
     }
 
     const estaNoPerfilPessoal = () => {
-        if(router.query.id === 'eu' || router.query.id === usuarioLogado.id) {
+        if (router.query.id === 'eu' || router.query.id === usuarioLogado.id) {
             return true;
         } else {
             return false;
         }
     }
-    
+
     useEffect(async () => {
+        setUsuario({})
+        console.log('queryid: ', router.query.id)
+
         if (!router.query.id) {
             return;
         }
 
         const dadosPerfil = await obterPerfil(router.query.id);
+        console.log('dadosPerfil: ', dadosPerfil)
         setUsuario(dadosPerfil);
     }, [router.query.id]);
 
@@ -52,8 +60,8 @@ function Perfil({usuarioLogado}) {
                 estaNoPerfilPessoal={estaNoPerfilPessoal()}
             />
 
-            <Feed 
-                usuarioLogado={usuarioLogado} 
+            <Feed
+                usuarioLogado={usuarioLogado}
                 usuarioPerfil={usuario}
             />
         </div>

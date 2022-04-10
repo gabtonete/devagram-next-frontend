@@ -12,7 +12,6 @@ export default function List() {
 
     useEffect(async () => {
         const { data } = await feedService.carregarLista();
-        console.log(data)
         const usuarioFormatado = data.map(usuario => ({
             id: usuario._id,
             nome: usuario.nome,
