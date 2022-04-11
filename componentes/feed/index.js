@@ -11,20 +11,7 @@ export default  function Feed ({ usuarioLogado, usuarioPerfil }) {
 
     useEffect(async () => {
         setListaDePostagens([]);
-
-        console.log('usuarioPerfil?.id: ', usuarioPerfil?._id)
         const { data } = await feedService.carregarPostagens(usuarioPerfil?._id);
-        console.log('postagens carregadas: ', data)
-
-        if(usuarioPerfil?._id !== undefined) {
-            data.map(postagem => {
-                if(postagem.idUsuario !== usuarioPerfil._id){
-                    data.splice(postagem)
-                }
-            })
-        }
-
-        console.log(data)
 
         const postagensFormatadas = await data.map(postagem => ({
             id: postagem._id,
@@ -43,7 +30,6 @@ export default  function Feed ({ usuarioLogado, usuarioPerfil }) {
         }))
 
         setListaDePostagens(postagensFormatadas);
-        console.log('posts do feed: ', postagensFormatadas)
     },[usuarioPerfil, router.query.id]);
 
     if (!listaDePostagens.length) {

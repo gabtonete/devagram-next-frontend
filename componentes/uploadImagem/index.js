@@ -51,7 +51,6 @@ export default function UploadImagem(
 
     const aoSoltarImagem = (e) => {
         e.preventDefault();
-        console.log("Imagem solta");
         if(e.dataTransfer.files && e.dataTransfer.files.length > 0) {
             const arquivo = e.dataTransfer.files[0];
             obterUrlDaImagemEAtualizarEstado(arquivo);

@@ -4,12 +4,11 @@ import HttpService from './HttpService';
 export default class FeedService extends HttpService {
     async carregarPostagens(idUsuario) {
         let url = '/feed';
-        console.log('idusuario: ', idUsuario)
         if(idUsuario) {
             url = `/feed?id=${idUsuario}`
         }
 
-        return await this.get(url);
+        return this.get(url);
     }
 
     async adicionarComentario(idPostagem, comentario) {

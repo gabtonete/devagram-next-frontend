@@ -22,8 +22,6 @@ function Perfil({ usuarioLogado }) {
                 whoIs = idUsuario
             }
 
-            console.log('whoIs: ', whoIs)
-
             const { data } = await usuarioService.obterPerfil(whoIs)
             return data;
         } catch (e) {
@@ -41,14 +39,12 @@ function Perfil({ usuarioLogado }) {
 
     useEffect(async () => {
         setUsuario({})
-        console.log('queryid: ', router.query.id)
 
         if (!router.query.id) {
             return;
         }
 
         const dadosPerfil = await obterPerfil(router.query.id);
-        console.log('dadosPerfil: ', dadosPerfil)
         setUsuario(dadosPerfil);
     }, [router.query.id]);
 
