@@ -41,7 +41,7 @@ input {
   }
 
   @media screen and (max-width: calc($desktopBreakpoint - 1px)) {
-    display: none;
+    display: none !important;
   }
 }
 

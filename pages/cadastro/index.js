@@ -11,7 +11,7 @@ import UploadImage from '../../componentes/uploadImagem';
 import usuarioAtivo from '../../public/imagens/usuarioAtivo.svg';
 import envelope from '../../public/imagens/envelope.svg';
 import chave from '../../public/imagens/chave.svg';
-import logo from '../../public/imagens/cat-svgrepo-com.svg';
+import logo from '../../public/imagens/logo.svg';
 import avatar from '../../public/imagens/avatar.svg';
 
 import UsuarioService from '../../services/UsuarioService';
@@ -76,12 +76,14 @@ export default function Cadastro() {
 
     return (
         <section className={`signup-page public-page`}>
-            <div className="desktop logo-container">
+            <div className="logo-container desktop">
                 <Image
                     src={logo}
                     alt="logotipo"
+                    className="logo"
+                    width={300}
+                    height={300}
                 />
-                <span className="logoName">Catgram</span>
             </div>
             <div className="public-page-content">
                 <form onSubmit={submitForm}>
